@@ -1,0 +1,31 @@
+.components-list .components-item {
+    display: inline-block;
+    width: 45%;
+    margin: 2%;
+    -webkit-transition: -webkit-transform 0ms!important;
+    transition: -webkit-transform 0ms!important;
+    transition: transform 0ms!important;
+    transition: transform 0ms,-webkit-transform 0ms!important;
+    cursor: pointer;
+
+}
+
+.components-body {
+    padding: 8px 10px;
+    background: #f6f7ff;
+    font-size: 12px;
+    cursor: move;
+    border: 1px dashed #f6f7ff;
+    border-radius: 3px;
+}
+.ant-tabs-tab {
+    width: 50% !important;
+}
+
+.ant-tabs-nav-list {
+    width: 100% !important;
+}
+
+.ant-tabs-tab-btn {
+    margin: 0 auto !important;
+}

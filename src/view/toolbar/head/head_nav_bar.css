@@ -1,0 +1,11 @@
+.head-nav-title {
+    color: #00afff;
+    font-weight: 600;
+    font-size: 25px;
+    white-space: nowrap;
+    margin-left: 10%;
+}
+
+.head-tool-list {
+    text-align: center;
+}

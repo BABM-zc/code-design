@@ -1,0 +1,29 @@
+#drawing-board {
+    height: 100%;
+    border-left: 1px solid #f1e8e8;
+    border-right: 1px solid #f1e8e8;
+    overflow-x: auto;
+}
+.code-design-line:hover {
+    background-color: #f6f7ff;
+}
+
+.code-design-line {
+    padding-top: 10px;
+    line-height: 55px !important;
+    padding-bottom: 10px;
+}
+.container-left-sider {
+    background: #ffffff !important;
+}
+.container-form {
+    height: 100%;
+}
+
+.container-header {
+    border-bottom: 1px solid #f1e8e8;
+    background-color: #ffffff !important;
+}
+.ant-layout-header {
+    padding: 0px !important;
+}

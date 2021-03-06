@@ -4,6 +4,7 @@ import { DOMUtils } from '../../common/dom_utils';
 
 /**
  * 整个编辑器服务
+ * 用于修改属性
  */
 export class EditorService implements IEditorService {
 

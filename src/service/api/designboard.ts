@@ -11,17 +11,17 @@ export interface IDesignBoardService {
     /**
      * 代码生成服务接口
      */
-    code: ICodeService;
+    readonly code: ICodeService;
     /**
      * 组件操作接口
      */
-    component: IComponentService;
+    readonly component: IComponentService;
     /**
      * 拖拽接口
      */
-    dragboard: IDragBoardService;
+    readonly dragboard: IDragBoardService;
     /**
      * 导出接口
      */
-    export: IExportService;
+    readonly export: IExportService;
 }

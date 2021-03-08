@@ -1,4 +1,4 @@
-import { RenderNode } from "../../view/toolbar/left_side/common";
+import { RenderNode } from "../../view/toolbar/left_side/common/data";
 
 /**
  * 组件服务接口

@@ -13,7 +13,8 @@ export interface RenderMessage {
     name: string;
     type: string;
     icon: string;
-    dom: RenderNode;
+    element?: JSX.Element;
+    dom?: RenderNode;
 }
 /**
  * DOM数据结构

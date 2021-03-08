@@ -1,10 +1,10 @@
 import React from "react";
-import { iconFontSource, menusConfigs } from "./config";
+import { iconFontSource } from "./common/config";
 import './side_nav_bar.css';
-import { MenuGroup, RenderNode } from './common';
+import { MenuGroup, RenderNode } from './common/data';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { Tabs, Divider } from 'antd';
-
+import { menusConfigs } from './config/menu.config';
 
 const { TabPane } = Tabs;
 
@@ -20,7 +20,10 @@ export class SideNavBar extends React.PureComponent {
 
     private selectNode!: RenderNode;
 
-    private onDragStart(_type: string, dom: RenderNode) {
+    private onDragStart(_type: string, dom: any) {
+        // 要react.element => Element
+        const element = React.createElement(dom);
+        console.log(element);
         this.selectNode = dom;
     }
 
@@ -56,7 +59,7 @@ export class SideNavBar extends React.PureComponent {
                                                             key={menu.key}
                                                             className='components-item'
                                                             draggable='true'
-                                                            onDragStart={this.onDragStart.bind(this, menu.type, menu.dom)}
+                                                            onDragStart={this.onDragStart.bind(this, menu.type, menu.element)}
                                                             onDragEnd={this.onDragEnd.bind(this)}
                                                             onDragOver={this.onDragOver.bind(this)}
                                                         >

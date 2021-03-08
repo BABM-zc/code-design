@@ -1,4 +1,4 @@
-import { MenuGroup } from './common';
+import { MenuGroup } from './data';
 
 /**
  * 默认标签设置

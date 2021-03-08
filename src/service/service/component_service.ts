@@ -1,5 +1,5 @@
 import { DOMUtils } from "../../common/dom_utils";
-import { RenderNode } from "../../view/toolbar/left_side/common";
+import { RenderNode } from "../../view/toolbar/left_side/common/data";
 import { IComponentService } from '../api';
 
 /**
@@ -52,25 +52,6 @@ export class ComponentService implements IComponentService {
         return labelContainer;
     }
 
-    private renderChildren(nodes: RenderNode[]) {
-        // 渲染当前这一层的
-        nodes.forEach((node) => {
-            let dom = document.createElement(node.domType);
-            if (node.class) {
-                dom.className = node.class;
-            }
-            if (node.id) {
-                dom.id = `${node.key}-${node.id}`; // 为了确保不重复id为 key + nodeId
-            }
-            this.componentNode.appendChild(dom);
-            dom = this.componentNode as HTMLElement;
-            this.componentNode = dom;
-            if (node && node.children) {
-                this.renderChildren(node.children);
-            }
-        });
-    }
-
     private renderRootDomTree(node: RenderNode) {
         const dom = document.createElement(node.domType);
         if (node.class) {
@@ -91,11 +72,6 @@ export class ComponentService implements IComponentService {
         inputContainer.className = 'ant-form-item-control-input';
         const inputContent = document.createElement('div');
         inputContent.className = 'ant-form-item-control-input-content';
-        this.renderRootDomTree(this.root);
-
-        if (this.root && this.root.children) {
-            this.renderChildren(this.root.children);
-        }
         console.log(this.componentNode);
         // 输出最后结果
         inputContent.appendChild(this.componentNode);

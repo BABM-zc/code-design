@@ -8,9 +8,9 @@ export const button: RenderMessage = {
     name: '按钮',
     type: 'button',
     icon: 'icon-anniu',
-    element: (
-        <button type="button" className="ant-btn ant-btn-primary">
-            <span className="code-design-input-text">Primary Button</span>
+    element: `
+        <button type="button" class="ant-btn ant-btn-primary">
+            <span class="code-design-input-text">Primary Button</span>
         </button>
-    ),
+    `,
 }

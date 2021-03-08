@@ -13,7 +13,7 @@ export interface RenderMessage {
     name: string;
     type: string;
     icon: string;
-    element?: JSX.Element;
+    element?: string;
     dom?: RenderNode;
 }
 /**

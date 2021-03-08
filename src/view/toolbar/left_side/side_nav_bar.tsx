@@ -1,10 +1,11 @@
 import React from "react";
 import { iconFontSource } from "./common/config";
 import './side_nav_bar.css';
-import { MenuGroup, RenderNode } from './common/data';
+import { MenuGroup } from './common/data';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { Tabs, Divider } from 'antd';
 import { menusConfigs } from './config/menu.config';
+import { NotificationList } from "../../../common/notification";
 
 const { TabPane } = Tabs;
 
@@ -18,18 +19,17 @@ const IconFont = createFromIconfontCN({
  */
 export class SideNavBar extends React.PureComponent {
 
-    private selectNode!: RenderNode;
+    private selectNode!: string;
 
-    private onDragStart(_type: string, dom: any) {
-        // 要react.element => Element
-        const element = React.createElement(dom);
-        console.log(element);
-        this.selectNode = dom;
+    private onDragStart(_type: string, dom?: string) {
+        if (dom) {
+            this.selectNode = dom;
+        }
     }
 
     private onDragEnd() {
         // 用户释放触发
-        const event = new CustomEvent('componentMove', { 'detail': this.selectNode });
+        const event = new CustomEvent(NotificationList.COMPONENT_MOVE, { 'detail': this.selectNode });
         document.dispatchEvent(event);
     }
 

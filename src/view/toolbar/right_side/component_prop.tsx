@@ -1,7 +1,6 @@
 import React from "react";
 import { Form, Input, Divider, Switch, Slider } from 'antd';
 import { IEditorService } from '../../../service/api/editor';
-import { DOMUtils } from '../../../common/dom_utils';
 
 export interface ComponentProps {
 

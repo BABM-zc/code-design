@@ -131,7 +131,11 @@ export class CodeDesignContainer extends React.PureComponent<{}, ContainerState>
                     <Radio value={2}>B</Radio>
                     <Radio value={3}>C</Radio>
                     <Radio value={4}>D</Radio>
-                  </Radio.Group>                </Form.Item>
+                  </Radio.Group>               
+                   </Form.Item>
+                   <Form.Item label="Button">
+                   <Button type="primary">Primary Button</Button>            
+                   </Form.Item>
               </Form>
             </div>
           </Layout>

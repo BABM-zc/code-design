@@ -1,4 +1,4 @@
-import { RenderDOM } from "../../view/toolbar/side/common";
+import { RenderNode } from "../../view/toolbar/left_side/common";
 
 /**
  * 组件服务接口
@@ -7,5 +7,5 @@ export interface IComponentService {
     /**
      * 插入DOM到画板
      */
-    insertDOM(dom: RenderDOM): void;
+    insertDOM(dom: RenderNode): void;
 }

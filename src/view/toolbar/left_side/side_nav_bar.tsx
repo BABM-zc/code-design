@@ -1,7 +1,7 @@
 import React from "react";
 import { iconFontSource, menusConfigs } from "./config";
 import './side_nav_bar.css';
-import { MenuGroup, RenderDOM } from './common';
+import { MenuGroup, RenderNode } from './common';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { Tabs, Divider } from 'antd';
 
@@ -18,9 +18,9 @@ const IconFont = createFromIconfontCN({
  */
 export class SideNavBar extends React.PureComponent {
 
-    private selectNode!: RenderDOM;
+    private selectNode!: RenderNode;
 
-    private onDragStart(_type: string, dom: RenderDOM) {
+    private onDragStart(_type: string, dom: RenderNode) {
         this.selectNode = dom;
     }
 

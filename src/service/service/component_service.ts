@@ -1,5 +1,5 @@
 import { DOMUtils } from "../../common/dom_utils";
-import { RenderDOM } from "../../view/toolbar/side/common";
+import { RenderNode } from "../../view/toolbar/left_side/common";
 import { IComponentService } from '../api';
 
 /**
@@ -7,11 +7,11 @@ import { IComponentService } from '../api';
  */
 export class ComponentService implements IComponentService {
 
-    private root!: RenderDOM; // 待渲染节点的根节点
+    private root!: RenderNode; // 待渲染节点的根节点
 
     private dragElement!: HTMLElement; // 拖拽组件的中间状态
 
-    private renderDom?: HTMLElement; // 待渲染组件
+    private componentNode!: HTMLElement;
 
     /**
      * 拖拽移动交互
@@ -51,32 +51,37 @@ export class ComponentService implements IComponentService {
         labelContainer.appendChild(label);
         return labelContainer;
     }
-    /**
-     * 深度遍历生成DOM
-     * 因为一个dom的常规样子是这样的
-     *                   root
-     *            leaf          leaf
-     *        leaf    leaf   leaf   leaf 
-     * https://github.com/AnswerYas/blog/issues/11
-     */
-    private renderChildren(node: RenderDOM, nodeList = []) {
 
-        if (node) {
-            const dom = document.createElement(node.domType);
+    private renderChildren(nodes: RenderNode[]) {
+        // 渲染当前这一层的
+        nodes.forEach((node) => {
+            let dom = document.createElement(node.domType);
             if (node.class) {
                 dom.className = node.class;
             }
-            // @ts-ignore
-            nodeList.push(node)
-            if (node.children && node.children.length) {
-                for (var i = 0; i < node.children.length; i++) {
-                    this.renderChildren(node.children[i], nodeList)
-                }
+            if (node.id) {
+                dom.id = `${node.key}-${node.id}`; // 为了确保不重复id为 key + nodeId
             }
-        }
-
-        return nodeList
+            this.componentNode.appendChild(dom);
+            dom = this.componentNode as HTMLElement;
+            this.componentNode = dom;
+            if (node && node.children) {
+                this.renderChildren(node.children);
+            }
+        });
     }
+
+    private renderRootDomTree(node: RenderNode) {
+        const dom = document.createElement(node.domType);
+        if (node.class) {
+            dom.className = node.class;
+        }
+        if (node.id) {
+            dom.id = `${node.key}-${node.id}`; // 为了确保不重复id为 key + nodeId
+        }
+        this.componentNode = dom;
+    }
+
 
     private renderFormComponent(): HTMLDivElement {
         // 渲染组件的外层
@@ -86,11 +91,14 @@ export class ComponentService implements IComponentService {
         inputContainer.className = 'ant-form-item-control-input';
         const inputContent = document.createElement('div');
         inputContent.className = 'ant-form-item-control-input-content';
-        this.renderDom = inputContent;
-        // 渲染dom
-        this.renderChildren(this.root);
+        this.renderRootDomTree(this.root);
+
+        if (this.root && this.root.children) {
+            this.renderChildren(this.root.children);
+        }
+        console.log(this.componentNode);
         // 输出最后结果
-        inputContent.appendChild((this.renderDom as Node));
+        inputContent.appendChild(this.componentNode);
         inputContainer.appendChild(inputContent);
         componentContainer.appendChild(inputContainer)
         return componentContainer;
@@ -115,13 +123,13 @@ export class ComponentService implements IComponentService {
     /**
      * 插入组件
      */
-    public insertDOM(dom: RenderDOM): void {
+    public insertDOM(dom: RenderNode): void {
         if (dom) {
             this.root = dom;
             const dragBoard = document.getElementById('drawing-board');
             dragBoard && dragBoard.appendChild(this.renderLine());
         } else {
-            throw Error('传入的待渲染的DOM是非法的！请检查config.ts中的dom值是否在合法范围内！');
+            console.error('传入的待渲染的DOM是非法的！请检查config.ts中的dom值是否在合法范围内！');
         }
     }
 }

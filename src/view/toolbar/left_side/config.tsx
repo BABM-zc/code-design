@@ -1,4 +1,4 @@
-import { MenuGroup } from "./common";
+import { MenuGroup } from './common';
 
 /**
  * 默认标签设置
@@ -32,36 +32,53 @@ export const menusConfigs: MenuGroup[] = [
                 type: 'radio',
                 icon: 'icon-danxuananniuzu',
                 dom: {
+                    key: 'radio',
                     domType: 'div',
                     type: 'div',
+                    id: '1',
                     class: 'ant-radio-group ant-radio-group-outline',
                     children: [
                         {
+                            key: 'radio',
                             domType: 'label',
                             type: 'label',
                             class: 'ant-radio-wrapper',
+                            id: '1-1',
+                            parentId: '1',
                             children: [
                                 {
+                                    key: 'radio',
                                     domType: 'span',
                                     type: 'span',
                                     class: 'ant-radio',
+                                    id: '1-1-1',
+                                    parentId: '1-1',
                                     children: [
                                         {
+                                            key: 'radio',
                                             domType: 'input',
                                             type: 'radio',
+                                            id: '1-1-1-1',
+                                            parentId: '1-1-1',
                                             class: 'ant-radio-input',
                                             value: '',
                                         },
                                         {
+                                            key: 'radio',
                                             domType: 'span',
                                             type: 'span',
+                                            id: '1-1-1-2',
+                                            parentId: '1-1-1',
                                             class: 'ant-radio-inner',
                                         }
                                     ]
                                 },
                                 {
+                                    key: 'radio',
                                     domType: 'span',
                                     type: 'span',
+                                    id: '1-1-2',
+                                    parentId: '1-1',
                                     value: '',
                                 }
                             ]

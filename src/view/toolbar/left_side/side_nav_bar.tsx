@@ -1,10 +1,11 @@
 import React from "react";
-import { iconFontSource, menusConfigs } from "./config";
+import { iconFontSource } from "./common/config";
 import './side_nav_bar.css';
-import { MenuGroup, RenderDOM } from './common';
+import { MenuGroup } from './common/data';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { Tabs, Divider } from 'antd';
-
+import { menusConfigs } from './config/menu.config';
+import { NotificationList } from "../../../common/notification";
 
 const { TabPane } = Tabs;
 
@@ -18,15 +19,17 @@ const IconFont = createFromIconfontCN({
  */
 export class SideNavBar extends React.PureComponent {
 
-    private selectNode!: RenderDOM;
+    private selectNode!: string;
 
-    private onDragStart(_type: string, dom: RenderDOM) {
-        this.selectNode = dom;
+    private onDragStart(_type: string, dom?: string) {
+        if (dom) {
+            this.selectNode = dom;
+        }
     }
 
     private onDragEnd() {
         // 用户释放触发
-        const event = new CustomEvent('componentMove', { 'detail': this.selectNode });
+        const event = new CustomEvent(NotificationList.COMPONENT_MOVE, { 'detail': this.selectNode });
         document.dispatchEvent(event);
     }
 
@@ -56,7 +59,7 @@ export class SideNavBar extends React.PureComponent {
                                                             key={menu.key}
                                                             className='components-item'
                                                             draggable='true'
-                                                            onDragStart={this.onDragStart.bind(this, menu.type, menu.dom)}
+                                                            onDragStart={this.onDragStart.bind(this, menu.type, menu.element)}
                                                             onDragEnd={this.onDragEnd.bind(this)}
                                                             onDragOver={this.onDragOver.bind(this)}
                                                         >

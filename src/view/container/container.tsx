@@ -6,6 +6,7 @@ import {
   Layout,
 } from 'antd';
 import { DesignBoardService, IDesignBoardService } from "../../service";
+import { NotificationList } from "../../common/notification";
 
 
 
@@ -31,7 +32,7 @@ export class CodeDesignContainer extends React.PureComponent<{}, ContainerState>
 
   private onDragEnter() {
     this.isRender = false;
-    document.addEventListener('componentMove', this.addComponent.bind(this));
+    document.addEventListener(NotificationList.COMPONENT_MOVE, this.addComponent.bind(this));
   }
 
   private addComponent(e: any) {
